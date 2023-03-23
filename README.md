@@ -1,7 +1,7 @@
 # Difference Calculator
 
-### Hexlet tests and linter status:
 [![Actions Status](https://github.com/vl-gush/python-project-50/workflows/hexlet-check/badge.svg)](https://github.com/vl-gush/python-project-50/actions)
+[![Maintainability](https://api.codeclimate.com/v1/badges/afda2d2afa312e29cb50/maintainability)](https://codeclimate.com/github/vl-gush/python-project-50/maintainability)
 
 ##### Difference Calculator is a program that determines the difference between two data structures.
 
