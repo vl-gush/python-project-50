@@ -4,13 +4,16 @@ install:
 build:
 	poetry build
 
+lint:
+	poetry run flake8 gendiff
+
 publish:
 	poetry publish --dry-run
 
 package-install:
 	python3 -m pip install --force-reinstall --user .
 
-lint:
-	poetry run flake8 brain_games
+test:
+	poetry run pytest
 
-.PHONY: install build publish package-install lint
+.PHONY: install build lint publish package-install test
