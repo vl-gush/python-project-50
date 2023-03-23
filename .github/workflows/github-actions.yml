@@ -1,4 +1,4 @@
-name: gendiff
+name: Github Actions
 
 on: [push]
 
