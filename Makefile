@@ -14,6 +14,6 @@ package-install:
 	python3 -m pip install --force-reinstall --user .
 
 test:
-	poetry run pytest
+	poetry run pytest --cov=gendiff --cov-report xml tests/
 
 .PHONY: install build lint publish package-install test
