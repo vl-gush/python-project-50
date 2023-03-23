@@ -9,13 +9,23 @@ def generate_diff(path1, path2):
     for key in keys:
         if key in file1 and key in file2:
             if file1[key] == file2[key]:
-                result += f"    {key}: {file1[key]}\n"
+                result += f"    {key}: {normalized_value(file1[key])}\n"
             else:
-                result += f"  - {key}: {file1[key]}\n"
-                result += f"  + {key}: {file2[key]}\n"
+                result += f"  - {key}: {normalized_value(file1[key])}\n"
+                result += f"  + {key}: {normalized_value(file2[key])}\n"
         elif key in file1:
-            result += f"  - {key}: {file1[key]}\n"
+            result += f"  - {key}: {normalized_value(file1[key])}\n"
         else:
-            result += f"  + {key}: {file2[key]}\n"
+            result += f"  + {key}: {normalized_value(file2[key])}\n"
     result += "}"
     return result
+
+
+def normalized_value(value):
+    if value is True:
+        return "true"
+    elif value is False:
+        return "false"
+    elif value is None:
+        return "null"
+    return value
