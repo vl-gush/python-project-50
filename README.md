@@ -1,7 +1,7 @@
 # Difference Calculator
 
 [![hexlet-check](https://github.com/vl-gush/python-project-50/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/vl-gush/python-project-50/actions/workflows/hexlet-check.yml)
-[![Github Actions](https://github.com/vl-gush/python-project-50/actions/workflows/github-actions.yml/badge.svg)](https://github.com/vl-gush/python-project-50/actions/workflows/github-actions.yml)
+[![Python CI](https://github.com/vl-gush/python-project-50/actions/workflows/pyci.yml/badge.svg)](https://github.com/vl-gush/python-project-50/actions/workflows/pyci.yml)
 [![Maintainability](https://api.codeclimate.com/v1/badges/afda2d2afa312e29cb50/maintainability)](https://codeclimate.com/github/vl-gush/python-project-50/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/afda2d2afa312e29cb50/test_coverage)](https://codeclimate.com/github/vl-gush/python-project-50/test_coverage)
 
