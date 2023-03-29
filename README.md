@@ -12,6 +12,6 @@
 * #### git ver. ^2.25.1
 
 ```
-gendiff path/to/file_before path/to/file_after
+gendiff path/to/file1 path/to/file2
 ```
 [![asciicast](https://asciinema.org/a/QI1uFvVer51wfpnS4ajkMnDqi.png)](https://asciinema.org/a/QI1uFvVer51wfpnS4ajkMnDqi)
