@@ -1,23 +1,29 @@
 from gendiff.parse import parse
 
 
-def generate_diff(file_before_path: str, file_after_path: str) -> str:
-    file_before, file_after = parse(file_before_path, file_after_path)
-    keys = sorted(list(set(file_before) | set(file_after)))
+def generate_diff(file1_path: str, file2_path: str) -> str:
+    file1, file2 = parse(file1_path, file2_path)
+    keys = sorted(list(set(file1) | set(file2)))
     result = "{\n"
     for key in keys:
-        if key in file_before and key in file_after:
-            if file_before[key] == file_after[key]:
-                result += f"    {key}: {normalized_value(file_before[key])}\n"
-            else:
-                result += f"  - {key}: {normalized_value(file_before[key])}\n"
-                result += f"  + {key}: {normalized_value(file_after[key])}\n"
-        elif key in file_before:
-            result += f"  - {key}: {normalized_value(file_before[key])}\n"
-        else:
-            result += f"  + {key}: {normalized_value(file_after[key])}\n"
+        result += key_comparison(key, file1, file2)
     result += "}"
     return result
+
+
+def key_comparison(key, file1: dict, file2: dict):
+    if key in file1 and key in file2:
+        if file1[key] == file2[key]:
+            return f"    {key}: {normalized_value(file1[key])}\n"
+        else:
+            return ''.join((
+                f"  - {key}: {normalized_value(file1[key])}\n",
+                f"  + {key}: {normalized_value(file2[key])}\n"
+            ))
+    elif key in file1:
+        return f"  - {key}: {normalized_value(file1[key])}\n"
+    else:
+        return f"  + {key}: {normalized_value(file2[key])}\n"
 
 
 def normalized_value(value):
