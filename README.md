@@ -14,4 +14,4 @@
 ```
 gendiff path/to/file_before path/to/file_after
 ```
-[![asciicast](https://asciinema.org/a/TnjPWYZSG33tTJ9Rhk4QVfowX.png)](https://asciinema.org/a/TnjPWYZSG33tTJ9Rhk4QVfowX)
+[![asciicast](https://asciinema.org/a/MGh9JHJsl98LxqodJ7ZzR6GVD.png)](https://asciinema.org/a/MGh9JHJsl98LxqodJ7ZzR6GVD)
