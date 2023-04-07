@@ -13,17 +13,21 @@ def generate_diff(file1_path: str, file2_path: str) -> str:
 
 def key_comparison(key, file1: dict, file2: dict):
     if key in file1 and key in file2:
-        if file1[key] == file2[key]:
-            return f"    {key}: {normalized_value(file1[key])}\n"
-        else:
-            return ''.join((
-                f"  - {key}: {normalized_value(file1[key])}\n",
-                f"  + {key}: {normalized_value(file2[key])}\n"
-            ))
+        return key_in_both_files(key, file1, file2)
     elif key in file1:
         return f"  - {key}: {normalized_value(file1[key])}\n"
     else:
         return f"  + {key}: {normalized_value(file2[key])}\n"
+
+
+def key_in_both_files(key, file1, file2):
+    if file1[key] == file2[key]:
+        return f"    {key}: {normalized_value(file1[key])}\n"
+    else:
+        return ''.join((
+            f"  - {key}: {normalized_value(file1[key])}\n",
+            f"  + {key}: {normalized_value(file2[key])}\n"
+        ))
 
 
 def normalized_value(value):
