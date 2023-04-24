@@ -1,6 +1,6 @@
 import argparse
-from gendiff.formatters.stylish import stylish
-from gendiff.formatters.plain import plain
+from gendiff.formatters.stylish import formatter as stylish
+from gendiff.formatters.plain import formatter as plain
 
 FORMATS = {
     "stylish": stylish,

@@ -1,18 +1,26 @@
 import itertools
 
+STATUSES = {
+    "added": "  + ",
+    "removed": "  - ",
+    "no changed": "    ",
+}
 
-def stylish(data: dict, depth: int = 0) -> str:
+
+def formatter(data: dict, depth: int = 0) -> str:
     keys = sorted(set(data))
     lines = []
     for key in keys:
         if is_children(data[key]):
             space = "    " * (depth + 1)
-            lines.append(f"{space}{key}: {stylish(data[key], depth=depth + 1)}")
+            lines.append(
+                f"{space}{key}: {formatter(data[key], depth=depth + 1)}"
+            )
         else:
             space = "    " * depth
             lines.append(f"{space}{generate_lines(key, data[key], depth + 1)}")
     result = itertools.chain("{", lines, ["    " * depth + "}"])
-    return '\n'.join(result)
+    return "\n".join(result)
 
 
 def generate_lines(key, item, depth):
@@ -25,17 +33,8 @@ def generate_lines(key, item, depth):
         ])
     value = item[1]
     if is_children(value):
-        return f"{status_check(status)}{key}: {stylish(value, depth)}"
-    return f"{status_check(status)}{key}: {to_string(value)}"
-
-
-def status_check(status):
-    if status == "added":
-        return "  + "
-    elif status == "removed":
-        return "  - "
-    elif status == "no changed":
-        return "    "
+        return f"{STATUSES[status]}{key}: {formatter(value, depth)}"
+    return f"{STATUSES[status]}{key}: {to_string(value)}"
 
 
 def is_children(value):

@@ -1,6 +1,6 @@
 from gendiff.engine import generate_diff
 from gendiff.parse import parse
-from gendiff.formatters.stylish import stylish
+from gendiff.formatters.stylish import formatter as stylish
 
 
 def test_nested():

@@ -1,6 +1,6 @@
 from gendiff.engine import generate_diff
 from gendiff.parse import parse
-from gendiff.formatters.plain import plain
+from gendiff.formatters.plain import formatter as plain
 
 
 def test_plain():
