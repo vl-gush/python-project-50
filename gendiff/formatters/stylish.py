@@ -5,7 +5,7 @@ def stylish(data: dict, depth: int = 0) -> str:
     keys = sorted(set(data))
     lines = []
     for key in keys:
-        if is_dict(data[key]):
+        if is_children(data[key]):
             space = "    " * (depth + 1)
             lines.append(f"{space}{key}: {stylish(data[key], depth=depth + 1)}")
         else:
@@ -20,13 +20,13 @@ def generate_lines(key, item, depth):
     if status == "changed":
         old_value, new_value = item[1:]
         return ("\n" + "    " * (depth - 1)).join([
-            generate_lines(key, ["removed", old_value], depth),
-            generate_lines(key, ["added", new_value], depth)
+            generate_lines(key, ["removed", to_string(old_value)], depth),
+            generate_lines(key, ["added", to_string(new_value)], depth)
         ])
     value = item[1]
-    if is_dict(value):
+    if is_children(value):
         return f"{status_check(status)}{key}: {stylish(value, depth)}"
-    return f"{status_check(status)}{key}: {normalized_value(value)}"
+    return f"{status_check(status)}{key}: {to_string(value)}"
 
 
 def status_check(status):
@@ -38,11 +38,11 @@ def status_check(status):
         return "    "
 
 
-def is_dict(value):
+def is_children(value):
     return isinstance(value, dict)
 
 
-def normalized_value(value):
+def to_string(value):
     if value is True:
         return "true"
     elif value is False:
