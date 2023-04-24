@@ -11,6 +11,7 @@
 * #### python ver. ^3.8.1
 * #### git ver. ^2.25.1
 
+
 ```
 gendiff path/to/file1 path/to/file2
 ```
@@ -19,3 +20,6 @@ gendiff path/to/file1 path/to/file2
 
 ### Recursive file comparison (JSON and YAML)
 [![asciicast](https://asciinema.org/a/c2YxaRrnaCDWZP6IToIOWCQpt.png)](https://asciinema.org/a/c2YxaRrnaCDWZP6IToIOWCQpt)
+
+### Plain format (JSON and YAML)
+[![asciicast](https://asciinema.org/a/EKzVQ8SU30khA0KyT8xFq8ftd.png)](https://asciinema.org/a/EKzVQ8SU30khA0KyT8xFq8ftd)
