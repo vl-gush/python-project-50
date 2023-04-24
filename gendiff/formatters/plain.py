@@ -9,7 +9,7 @@ def formatter(data: dict, key_path: list = []) -> str:
             line = formatter(data[key], key_path + [key])
         else:
             line = generate_lines(key, data[key], key_path)
-        if line is not None:
+        if line:
             lines.append(line)
     return "\n".join(lines)
 
