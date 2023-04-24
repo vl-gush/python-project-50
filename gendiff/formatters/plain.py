@@ -6,11 +6,11 @@ def formatter(data: dict, key_path: list = []) -> str:
     lines = []
     for key in keys:
         if is_children(data[key]):
-            lines.append(formatter(data[key], key_path + [key]))
+            line = formatter(data[key], key_path + [key])
         else:
             line = generate_lines(key, data[key], key_path)
-            if line is not None:
-                lines.append(line)
+        if line is not None:
+            lines.append(line)
     return "\n".join(lines)
 
 
