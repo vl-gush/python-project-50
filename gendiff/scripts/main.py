@@ -8,7 +8,7 @@ def main():
     first_file = parse(parser.first_file)
     second_file = parse(parser.second_file)
     formatter = FORMATS[parser.format]
-    print(formatter(generate_diff(first_file, second_file)))
+    print(generate_diff(first_file, second_file, formatter))
 
 
 if __name__ == "__main__":
