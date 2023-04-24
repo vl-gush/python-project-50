@@ -1,8 +1,10 @@
 import argparse
 from gendiff.formatters.stylish import stylish
+from gendiff.formatters.plain import plain
 
 FORMATS = {
     "stylish": stylish,
+    "plain": plain,
 }
 
 
