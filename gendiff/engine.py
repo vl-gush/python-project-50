@@ -1,12 +1,16 @@
-def generate_diff(file1: dict, file2: dict) -> dict:
-    keys = sorted(list(set(file1) | set(file2)))
+def generate_diff(file1, file2, format) -> dict:
+    return format(data_comparison(file1, file2))
+
+
+def data_comparison(data1, data2):
+    keys = sorted(list(set(data1) | set(data2)))
     result = {}
     for key in keys:
-        result[key] = key_comparison(key, file1, file2)
+        result[key] = key_check(key, data1, data2)
     return result
 
 
-def key_comparison(key, file1: dict, file2: dict):
+def key_check(key, file1: dict, file2: dict):
     if key in file1 and key in file2:
         return key_in_both_files(key, file1, file2)
     elif key in file1:
@@ -19,11 +23,11 @@ def key_in_both_files(key, file1, file2):
     if file1[key] == file2[key]:
         return generate_values("no changed", file1[key])
     if is_children(file1[key]) and is_children(file2[key]):
-        return generate_diff(file1[key], file2[key])
+        return data_comparison(file1[key], file2[key])
     elif is_children(file1[key]):
         return [
             "changed",
-            generate_diff(file1[key], file1[key]),
+            data_comparison(file1[key], file1[key]),
             file2[key]
         ]
     else:
@@ -32,7 +36,7 @@ def key_in_both_files(key, file1, file2):
 
 def generate_values(status, value):
     if is_children(value):
-        return [status, generate_diff(value, value)]
+        return [status, data_comparison(value, value)]
     return [status, value]
 
 
