@@ -11,5 +11,5 @@ def test_nested():
     yaml_file2 = parse("tests/fixtures/nested2.yaml")
 
     result = open("tests/fixtures/nested_result.txt").read()
-    assert stylish(generate_diff(json_file1, json_file2)) == result
-    assert stylish(generate_diff(yaml_file1, yaml_file2)) == result
+    assert generate_diff(json_file1, json_file2, stylish) == result
+    assert generate_diff(yaml_file1, yaml_file2, stylish) == result
