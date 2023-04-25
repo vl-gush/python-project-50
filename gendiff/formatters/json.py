@@ -19,15 +19,19 @@ def check_values(value, indent):
         return generate_dict(value, indent + 4)
     elif not isinstance(value, list):
         return value
-    status = value[0]
+    return generate_value(value, indent)
+
+
+def generate_value(old_value, indent):
+    status = old_value[0]
     if status == "no changed":
-        new_value = check_values(value[1], indent + 4)
+        new_value = check_values(old_value[1], indent + 4)
     elif status == "changed":
         new_value = (
             status,
-            check_values(value[1], indent + 4),
-            check_values(value[2], indent + 4),
+            check_values(old_value[1], indent + 4),
+            check_values(old_value[2], indent + 4),
         )
     else:
-        new_value = (status, check_values(value[1], indent + 4))
+        new_value = (status, check_values(old_value[1], indent + 4))
     return new_value
