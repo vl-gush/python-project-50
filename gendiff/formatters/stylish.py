@@ -7,14 +7,14 @@ STATUSES = {
 }
 
 
-def formatter(data: dict, depth: int = 0) -> str:
+def render(data: dict, depth: int = 0) -> str:
     keys = sorted(set(data))
     lines = []
     for key in keys:
         if is_children(data[key]):
             space = "    " * (depth + 1)
             lines.append(
-                f"{space}{key}: {formatter(data[key], depth=depth + 1)}"
+                f"{space}{key}: {render(data[key], depth=depth + 1)}"
             )
         else:
             space = "    " * depth
@@ -33,7 +33,7 @@ def generate_lines(key, item, depth):
         ])
     value = item[1]
     if is_children(value):
-        return f"{STATUSES[status]}{key}: {formatter(value, depth)}"
+        return f"{STATUSES[status]}{key}: {render(value, depth)}"
     return f"{STATUSES[status]}{key}: {to_string(value)}"
 
 
