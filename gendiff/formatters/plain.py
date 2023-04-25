@@ -1,12 +1,12 @@
 from gendiff.formatters.stylish import is_children, to_string
 
 
-def formatter(data: dict, key_path: list = []) -> str:
+def render(data: dict, key_path: list = []) -> str:
     keys = sorted(set(data))
     lines = []
     for key in keys:
         if is_children(data[key]):
-            line = formatter(data[key], key_path + [key])
+            line = render(data[key], key_path + [key])
         else:
             line = generate_lines(key, data[key], key_path)
         if line:
