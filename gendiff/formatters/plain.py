@@ -9,8 +9,7 @@ def render(data: dict, key_path: list = []) -> str:
             lines.append(render(data[key], key_path + [key]))
         else:
             lines.append(generate_lines(key, data[key], key_path))
-    while None in lines:
-        lines.remove(None)
+    cleaning_from_None(lines)
     return "\n".join(lines)
 
 
@@ -35,3 +34,8 @@ def unpack_value(value):
     elif isinstance(value, (dict, list)):
         return "[complex value]"
     return value
+
+
+def cleaning_from_None(data):
+    while None in data:
+        data.remove(None)
