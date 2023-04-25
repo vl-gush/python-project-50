@@ -9,7 +9,8 @@ def render(data: dict, key_path: list = []) -> str:
             lines.append(render(data[key], key_path + [key]))
         else:
             lines.append(generate_lines(key, data[key], key_path))
-    cleaning_from_None(lines)
+    while None in lines:
+        lines.remove(None)
     return "\n".join(lines)
 
 
@@ -39,4 +40,3 @@ def unpack_value(value):
 def cleaning_from_None(data):
     while None in data:
         data.remove(None)
-    return data
