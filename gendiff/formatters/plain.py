@@ -35,8 +35,3 @@ def unpack_value(value):
     elif isinstance(value, (dict, list)):
         return "[complex value]"
     return value
-
-
-def cleaning_from_None(data):
-    while None in data:
-        data.remove(None)
