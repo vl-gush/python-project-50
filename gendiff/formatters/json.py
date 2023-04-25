@@ -21,12 +21,13 @@ def check_values(value, indent):
         return value
     status = value[0]
     if status == "no changed":
-        return check_values(value[1], indent + 4)
+        new_value = check_values(value[1], indent + 4)
     elif status == "changed":
-        return (
+        new_value = (
             status,
             check_values(value[1], indent + 4),
             check_values(value[2], indent + 4),
         )
     else:
-        return status, check_values(value[1], indent + 4)
+        new_value = (status, check_values(value[1], indent + 4))
+    return new_value
