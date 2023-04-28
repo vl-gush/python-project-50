@@ -17,6 +17,7 @@ python3 -m pip install --user git+https://github.com/vl-gush/python-project-49
 ```
 [![asciicast](https://asciinema.org/a/O0pdKmDw21amG7UuvdFsUdCfw.png)](https://asciinema.org/a/O0pdKmDw21amG7UuvdFsUdCfw)
 
+## Usage
 ```
 gendiff path/to/file1 path/to/file2
 ```
