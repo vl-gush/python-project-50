@@ -29,4 +29,3 @@ def generate_parser():
     parser.add_argument("second_file")
     args = parser.parse_args()
     return args
-    return args

@@ -1,4 +1,7 @@
-def generate_diff(file1, file2, format) -> dict:
+from gendiff.formatters.stylish import render as stylish
+
+
+def generate_diff(file1, file2, format=stylish) -> dict:
     return format(data_comparison(file1, file2))
 
 
