@@ -8,37 +8,37 @@ STATUSES = {
 
 
 def render(data: dict, depth: int = 0) -> str:
-    keys = sorted(set(data))
+    keys = data.keys()
     lines = []
-    for key in keys:
-        if is_children(data[key]):
-            space = "    " * (depth + 1)
-            lines.append(
-                f"{space}{key}: {render(data[key], depth=depth + 1)}"
-            )
+    for status, key in keys:
+        if status == "changed":
+            if data[status, key][0] == "children":
+                value = data[status, key][1]
+                line = [
+                    f"{'    ' * (depth + 1)}{key}: {render(value, depth + 1)}"
+                ]
+            else:
+                value1, value2 = data[status, key]
+                value1_type, value1 = value1
+                value2_type, value2 = value2
+                line = []
+                if value1_type == "children":
+                    line.append(f"{'    ' * depth}{STATUSES['removed']}{key}: {render(value1, depth + 1)}")
+                else:
+                    line.append(f"{'    ' * depth}{STATUSES['removed']}{key}: {to_string(value1)}")
+                if value2_type == "children":
+                    line.append(f"{'    ' * depth}{STATUSES['added']}{key}: {render(value2, depth + 1)}")
+                else:
+                    line.append(f"{'    ' * depth}{STATUSES['added']}{key}: {to_string(value2)}")
         else:
-            space = "    " * depth
-            lines.append(f"{space}{generate_lines(key, data[key], depth + 1)}")
+            value_type, value = data[status, key]
+            if value_type == "children":
+                line = [f"{'    ' * depth}{STATUSES[status]}{key}: {render(value, depth + 1)}"]
+            else:
+                line = [f"{'    ' * depth}{STATUSES[status]}{key}: {to_string(value)}"]
+        lines.extend(line)
     result = itertools.chain("{", lines, ["    " * depth + "}"])
     return "\n".join(result)
-
-
-def generate_lines(key, item, depth):
-    status = item[0]
-    if status == "changed":
-        old_value, new_value = item[1:]
-        return ("\n" + "    " * (depth - 1)).join([
-            generate_lines(key, ["removed", to_string(old_value)], depth),
-            generate_lines(key, ["added", to_string(new_value)], depth)
-        ])
-    value = item[1]
-    if is_children(value):
-        return f"{STATUSES[status]}{key}: {render(value, depth)}"
-    return f"{STATUSES[status]}{key}: {to_string(value)}"
-
-
-def is_children(value):
-    return isinstance(value, dict)
 
 
 def to_string(value):
