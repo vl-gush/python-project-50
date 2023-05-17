@@ -14,7 +14,7 @@ def render(data: dict, key_path: list = []) -> str:
                 key = ".".join(key_path + [key])
                 lines.append(f"Property '{key}' was updated. From {to_string(unpack_value(value1))} to {to_string(unpack_value(value2))}")
         else:
-            value_type, value = data[status, key]
+            value = data[status, key][1]
             key = ".".join(key_path + [key])
             if status == "added":
                 lines.append(f"Property '{key}' was added with value: {to_string(unpack_value(value))}")
