@@ -1,6 +1,6 @@
 from gendiff.engine import generate_diff
 from gendiff.parse import parse
-from gendiff.formatters.json import render as json_format
+from gendiff.formatters.json_format import render as json_format
 
 
 def test_flat():
