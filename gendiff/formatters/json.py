@@ -1,4 +1,3 @@
-from gendiff.formatters.stylish import is_children
 import json
 
 
