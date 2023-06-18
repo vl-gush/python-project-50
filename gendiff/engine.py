@@ -1,11 +1,11 @@
 from gendiff.formatters.stylish import render as stylish
 
 
-def generate_diff(file1, file2, format=stylish) -> dict:
+def generate_diff(file1: dict, file2: dict, format=stylish) -> dict:
     return format(data_comparison(file1, file2))
 
 
-def data_comparison(data1, data2):
+def data_comparison(data1: dict, data2: dict) -> dict:
     keys = sorted(list(set(data1) | set(data2)))
     result = {}
     for key in keys:
@@ -14,37 +14,32 @@ def data_comparison(data1, data2):
     return result
 
 
-def key_check(key, data1, data2):
+def key_check(key: str, data1: dict, data2: dict) -> tuple:
     if key in data1 and key in data2:
-        return (
-            ("no changed", generate_value(data1[key]))
-            if data1[key] == data2[key]
-            else ("changed", key_changed(data1[key], data2[key]))
-        )
+        return key_in_both_data(key, data1, data2)
     elif key in data1:
         return "removed", generate_value(data1[key])
     elif key in data2:
         return "added", generate_value(data2[key])
 
 
-def generate_value(value):
-    if is_children(value):
-        return ["children", data_comparison(value, value)]
-    return ["value", value]
+def key_in_both_data(key: str, data1: dict, data2: dict) -> tuple:
+    if data1[key] == data2[key]:
+        return "no changed", generate_value(data1[key])
+    return "changed", key_changed(data1[key], data2[key])
 
 
-def key_changed(value1, value2):
+def key_changed(value1: any, value2: any) -> list:
     if is_children(value1) and is_children(value2):
         return ["children", data_comparison(value1, value2)]
     return [generate_value(value1), generate_value(value2)]
 
 
-def is_children(value):
+def generate_value(value: any) -> list:
+    if is_children(value):
+        return ["children", data_comparison(value, value)]
+    return ["value", value]
+
+
+def is_children(value: any) -> bool:
     return isinstance(value, dict)
-
-
-if __name__ == "__main__":
-    from gendiff.parse import parse
-    a = parse("tests/fixtures/nested1.json")
-    b = parse("tests/fixtures/nested2.json")
-    print(data_comparison(a, b))
