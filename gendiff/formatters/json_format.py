@@ -22,19 +22,15 @@ def key_changed(value: any) -> Union[dict, list]:
         value = value[1]
         return generate_dict(value)
     else:
-        value1_type, old_value1 = value[0]
-        value2_type, old_value2 = value[1]
-        new_value1 = generate_dict(old_value1) \
-            if value1_type == "children" else old_value1
-        new_value2 = generate_dict(old_value2) \
-            if value2_type == "children" else old_value2
-        return ["changed", new_value1, new_value2]
+        value1 = generate_values("changed", value[0])
+        value2 = generate_values("changed", value[1])
+        return ["changed", value1, value2]
 
 
 def generate_values(status: str, value: any) -> Union[dict, list]:
     value_type = value[0]
     new_value = generate_dict(value[1]) \
         if value_type == "children" else value[1]
-    if status == "no changed":
+    if status == "no changed" or status == "changed":
         return new_value
     return [status, new_value]
