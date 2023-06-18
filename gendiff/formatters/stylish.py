@@ -22,10 +22,7 @@ def generate_lines(key: str, status: str, value: list, depth: int = 0) -> list:
     else:
         value_type, old_value = value
         prefix = '    ' * depth + STATUSES[status]
-        if value_type == "children":
-            new_value = render(old_value, depth + 1)
-        else:
-            new_value = to_string(old_value)
+        new_value = generate_value(value_type, old_value, depth + 1)
         line = [f"{prefix}{key}: {new_value}"]
     return line
 
@@ -33,9 +30,7 @@ def generate_lines(key: str, status: str, value: list, depth: int = 0) -> list:
 def key_changed(key: str, value: list, depth: int = 0) -> list:
     if value[0] == "children":
         value = value[1]
-        line = [
-            f"{'    ' * (depth + 1)}{key}: {render(value, depth + 1)}"
-        ]
+        line = [f"{'    ' * (depth + 1)}{key}: {render(value, depth + 1)}"]
     else:
         value1, value2 = value
         value1_type, old_value1 = value1
