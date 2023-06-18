@@ -16,19 +16,15 @@ def data_comparison(data1, data2):
 
 def key_check(key, data1, data2):
     if key in data1 and key in data2:
-        if data1[key] == data2[key]:
-            status = "no changed"
-            value = generate_value(data1[key])
-        else:
-            status = "changed"
-            return status, key_changed(data1[key], data2[key])
+        return (
+            ("no changed", generate_value(data1[key]))
+            if data1[key] == data2[key]
+            else ("changed", key_changed(data1[key], data2[key]))
+        )
     elif key in data1:
-        status = "removed"
-        value = generate_value(data1[key])
+        return "removed", generate_value(data1[key])
     elif key in data2:
-        status = "added"
-        value = generate_value(data2[key])
-    return status, value
+        return "added", generate_value(data2[key])
 
 
 def generate_value(value):
