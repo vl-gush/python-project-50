@@ -1,3 +1,4 @@
+from typing import Union
 import itertools
 
 STATUSES = {
@@ -56,7 +57,7 @@ def generate_value(value_type: str, old_value: any, depth: int) -> str:
         return to_string(old_value)
 
 
-def to_string(value):
+def to_string(value: any) -> Union[str, int]:
     if value is True:
         return "true"
     elif value is False:
