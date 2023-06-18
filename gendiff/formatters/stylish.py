@@ -16,7 +16,7 @@ def render(data: dict, depth: int = 0) -> str:
     return "\n".join(result)
 
 
-def generate_lines(key: str, status: str, value: list, depth: int = 0):
+def generate_lines(key: str, status: str, value: list, depth: int = 0) -> list:
     if status == "changed":
         line = key_changed(key, value, depth)
     else:
@@ -30,7 +30,7 @@ def generate_lines(key: str, status: str, value: list, depth: int = 0):
     return line
 
 
-def key_changed(key: str, value: list, depth: int = 0):
+def key_changed(key: str, value: list, depth: int = 0) -> list:
     if value[0] == "children":
         value = value[1]
         line = [
@@ -54,7 +54,7 @@ def key_changed(key: str, value: list, depth: int = 0):
     return line
 
 
-def generate_value(value_type, old_value, depth):
+def generate_value(value_type: str, old_value: any, depth: int) -> str:
     if value_type == "children":
         return render(old_value, depth)
     else:
