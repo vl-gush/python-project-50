@@ -1,3 +1,4 @@
+from typing import NoReturn, Union
 from gendiff.formatters.stylish import to_string
 
 
@@ -5,26 +6,44 @@ def render(data: dict, key_path: list = []) -> str:
     keys = data.keys()
     lines = []
     for status, key in keys:
-        if status == "changed":
-            if data[status, key][0] == "children":
-                value = data[status, key][1]
-                lines.append(render(value, key_path + [key]))
-            else:
-                value1, value2 = data[status, key][0][1], data[status, key][1][1]
-                key = ".".join(key_path + [key])
-                lines.append(f"Property '{key}' was updated. From {to_string(unpack_value(value1))} to {to_string(unpack_value(value2))}")
-        else:
-            value = data[status, key][1]
-            key = ".".join(key_path + [key])
-            if status == "added":
-                lines.append(f"Property '{key}' was added with value: {to_string(unpack_value(value))}")
-            elif status == "removed":
-                lines.append(f"Property '{key}' was removed")
+        lines.append(generate_lines(key, status, data[status, key], key_path))
     cleaning_from_empty_lines(lines)
     return "\n".join(lines)
 
 
-def unpack_value(value):
+def generate_lines(key: str, status: str, value: list, key_path: list) -> str:
+    if status == "changed":
+        return key_changed(key, value, key_path + [key])
+    else:
+        return key_added_or_removed(key, status, value, key_path + [key])
+
+
+def key_changed(key: str, value: list, key_path: list) -> str:
+    if value[0] == "children":
+        value = value[1]
+        return render(value, key_path)
+    value1 = to_string(unpack_value(value[0][1]))
+    value2 = to_string(unpack_value(value[1][1]))
+    key = ".".join(key_path)
+    return f"Property '{key}' was updated. From {value1} to {value2}"
+
+
+def key_added_or_removed(
+        key: str,
+        status: str,
+        value: list,
+        key_path: list
+) -> str:
+    value = to_string(unpack_value(value[1]))
+    key = ".".join(key_path)
+    if status == "added":
+        return f"Property '{key}' was added with value: {value}"
+    elif status == "removed":
+        return f"Property '{key}' was removed"
+    return ""
+
+
+def unpack_value(value: any) -> Union[str, int]:
     if isinstance(value, str):
         return f"'{value}'"
     elif isinstance(value, (dict, list)):
@@ -32,6 +51,6 @@ def unpack_value(value):
     return value
 
 
-def cleaning_from_empty_lines(data):
+def cleaning_from_empty_lines(data: list) -> NoReturn:
     while "" in data:
         data.remove("")
