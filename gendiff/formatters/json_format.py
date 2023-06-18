@@ -29,8 +29,9 @@ def key_changed(value: any) -> Union[dict, list]:
 
 def generate_values(status: str, value: any) -> Union[dict, list]:
     value_type = value[0]
-    new_value = generate_dict(value[1]) \
-        if value_type == "children" else value[1]
+    new_value = (
+        generate_dict(value[1]) if value_type == "children" else value[1]
+    )
     if status == "no changed" or status == "changed":
         return new_value
     return [status, new_value]
