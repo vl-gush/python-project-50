@@ -1,7 +1,7 @@
 import argparse
 from gendiff.formatters.stylish import render as stylish
 from gendiff.formatters.plain import render as plain
-from gendiff.formatters.json import render as json_format
+from gendiff.formatters.json_format import render as json_format
 
 FORMATS = {
     "stylish": stylish,
