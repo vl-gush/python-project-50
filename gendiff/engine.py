@@ -1,10 +1,11 @@
 from gendiff.formatters.stylish import render as stylish
+from gendiff.parse import parse
 
 
 def generate_diff(file1: dict, file2: dict, format=stylish) -> dict:
-    print(file1)
-    print(file2)
-    return format(data_comparison(file1, file2))
+    first_file = parse(file1)
+    second_file = parse(file2)
+    return format(data_comparison(first_file, second_file))
 
 
 def data_comparison(data1: dict, data2: dict) -> dict:
