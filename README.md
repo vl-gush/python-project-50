@@ -13,19 +13,25 @@
 
 ## Installation
 ```
-python3 -m pip install --user git+https://github.com/vl-gush/python-project-49
+python3 -m pip install --user git+https://github.com/vl-gush/python-project-50
 ```
-[![asciicast](https://asciinema.org/a/O0pdKmDw21amG7UuvdFsUdCfw.png)](https://asciinema.org/a/O0pdKmDw21amG7UuvdFsUdCfw)
+[![asciicast](https://asciinema.org/a/MPbzJjKWZDUYTQscx4lfG5XxQ.png)](https://asciinema.org/a/MPbzJjKWZDUYTQscx4lfG5XxQ)
+
+## Uninstallation
+```
+python3 -m pip uninstall hexlet-code
+```
+[![asciicast](https://asciinema.org/a/VHk31ANjquhGTc3GOu8TT9ZJ2.png)](https://asciinema.org/a/VHk31ANjquhGTc3GOu8TT9ZJ2)
 
 ## Usage
 ```
 gendiff path/to/file1 path/to/file2
 ```
 ### Stylish format (JSON and YAML)
-[![asciicast](https://asciinema.org/a/7mKpeVwLn7KmFDew8wzB6n46C.png)](https://asciinema.org/a/7mKpeVwLn7KmFDew8wzB6n46C)
+[![asciicast](https://asciinema.org/a/uNcFnm8qbgsnCzqqgkXyVMtrf.png)](https://asciinema.org/a/uNcFnm8qbgsnCzqqgkXyVMtrf)
 
 ### Plain format (JSON and YAML)
-[![asciicast](https://asciinema.org/a/EKzVQ8SU30khA0KyT8xFq8ftd.png)](https://asciinema.org/a/EKzVQ8SU30khA0KyT8xFq8ftd)
+[![asciicast](https://asciinema.org/a/9qz5iziwwcQ4xHfeBAgJGgUEW.png)](https://asciinema.org/a/9qz5iziwwcQ4xHfeBAgJGgUEW)
 
 ### Json format (JSON and YAML)
-[![asciicast](https://asciinema.org/a/yFqecZ8aLTBMZGomQWk2aLD9H.png)](https://asciinema.org/a/yFqecZ8aLTBMZGomQWk2aLD9H)
+[![asciicast](https://asciinema.org/a/kTpYApkl7gpMKDzYlPk5ReScA.png)](https://asciinema.org/a/kTpYApkl7gpMKDzYlPk5ReScA)
