@@ -1,5 +1,4 @@
 from gendiff.engine import generate_diff
-from gendiff.formatters.plain import render as plain
 
 
 def test_flat():
@@ -10,8 +9,8 @@ def test_flat():
     yaml_file2 = "tests/fixtures/flat2.yaml"
 
     result = open("tests/fixtures/plain_flat_result.txt").read()
-    assert generate_diff(json_file1, json_file2, plain) == result
-    assert generate_diff(yaml_file1, yaml_file2, plain) == result
+    assert generate_diff(json_file1, json_file2, "plain") == result
+    assert generate_diff(yaml_file1, yaml_file2, "plain") == result
 
 
 def test_nested():
@@ -22,5 +21,5 @@ def test_nested():
     yaml_file2 = "tests/fixtures/nested2.yaml"
 
     result = open("tests/fixtures/plain_nested_result.txt").read()
-    assert generate_diff(json_file1, json_file2, plain) == result
-    assert generate_diff(yaml_file1, yaml_file2, plain) == result
+    assert generate_diff(json_file1, json_file2, "plain") == result
+    assert generate_diff(yaml_file1, yaml_file2, "plain") == result
