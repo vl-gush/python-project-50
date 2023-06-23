@@ -2,6 +2,8 @@ from gendiff.formatters.stylish import render as stylish
 
 
 def generate_diff(file1: dict, file2: dict, format=stylish) -> dict:
+    print(file1)
+    print(file2)
     return format(data_comparison(file1, file2))
 
 
